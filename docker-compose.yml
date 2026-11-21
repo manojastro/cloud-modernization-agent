@@ -1,0 +1,21 @@
+services:
+  modernization-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cloud-modernization-agent:local
+    container_name: cloud-modernization-agent
+    ports:
+      - "8015:8015"
+    environment:
+      DATABASE_URL: "sqlite:///./data/cloud_modernization.db"
+      LLM_MODE: "mock"
+      CORS_ORIGINS: "http://localhost:8015,http://127.0.0.1:8015"
+      LOG_LEVEL: "INFO"
+      ESTATE_SIZE: "120"
+    volumes:
+      - agent-data:/opt/app/backend/data
+    restart: unless-stopped
+
+volumes:
+  agent-data:

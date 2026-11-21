@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+
+# Local data (SQLite databases, generated artifacts)
+data/
+*.db
+*.sqlite3
+
+# Environment / secrets
+.env
+.env.local
+
+# OS noise
+.DS_Store
+Thumbs.db

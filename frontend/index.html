@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cloud Modernization Cockpit</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">CMA</span>
+    <div>
+      <h1>Autonomous Cloud Migration &amp; Modernization Agent</h1>
+      <p class="sub">Project 15 · enterprise agentic AI portfolio · deterministic simulation</p>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <span id="mock-badge" class="badge hidden">MOCK MODE</span>
+    <span id="meta-info" class="meta-info"></span>
+    <button id="btn-seed" class="btn">Seed estate</button>
+    <button id="btn-pipeline" class="btn primary">Run pipeline</button>
+    <span id="busy" class="busy hidden">working...</span>
+  </div>
+</header>
+
+<nav class="nav" id="nav">
+  <a href="#p-portfolio">Portfolio</a>
+  <a href="#p-mix">Mix</a>
+  <a href="#p-graph">Dependencies</a>
+  <a href="#p-readiness">Agentic readiness</a>
+  <a href="#p-debt">Tech debt</a>
+  <a href="#p-agentic">Checklist</a>
+  <a href="#p-waves">Waves</a>
+  <a href="#p-blocked">Blocked</a>
+  <a href="#p-progress">Progress</a>
+  <a href="#p-targetarch">Target arch</a>
+  <a href="#p-opportunities">Opportunities</a>
+  <a href="#p-risks">Risks</a>
+  <a href="#p-audit">Audit</a>
+</nav>
+
+<main id="panels">
+
+<section id="p-portfolio" class="panel wide">
+  <header><h2>Portfolio</h2><span id="portfolio-count" class="count"></span></header>
+  <div class="filters">
+    <input id="f-q" type="search" placeholder="search name / domain...">
+    <select id="f-strategy"><option value="">strategy: all</option></select>
+    <select id="f-band"><option value="">readiness: all</option>
+      <option>high</option><option>medium</option><option>low</option></select>
+    <select id="f-runtime"><option value="">runtime: all</option></select>
+    <select id="f-sort"><option value="name">sort: name</option>
+      <option value="criticality">criticality</option>
+      <option value="cost">cost</option>
+      <option value="debt">debt</option>
+      <option value="agentic">agentic score</option>
+      <option value="usage">usage</option></select>
+  </div>
+  <div class="table-wrap"><table id="portfolio-table">
+    <thead><tr>
+      <th>Application</th><th>Domain</th><th>Crit</th><th>Runtime</th>
+      <th>Strategy</th><th>Conf</th><th>Readiness</th><th>Agentic</th>
+      <th>Debt</th><th>Placement</th><th>Usage/day</th><th>Cost/yr</th>
+    </tr></thead>
+    <tbody></tbody>
+  </table></div>
+  <p id="portfolio-empty" class="empty hidden">No estate yet - use "Seed estate", then "Run pipeline".</p>
+</section>
+
+<div class="row-2">
+<section id="p-mix" class="panel">
+  <header><h2>Portfolio mix</h2></header>
+  <div class="mix-wrap">
+    <svg id="mix-donut" viewBox="0 0 200 200" role="img"></svg>
+    <ul id="mix-legend" class="legend"></ul>
+  </div>
+</section>
+
+<section id="p-readiness" class="panel">
+  <header><h2>Agentic readiness heatmap</h2>
+    <span class="hint">score 0-9 · click an app</span></header>
+  <div id="heatmap" class="heatmap"></div>
+  <div class="scale"><span>low 0</span><i></i><span>9 high</span></div>
+</section>
+</div>
+
+<section id="p-graph" class="panel wide">
+  <header><h2>Dependency map</h2>
+    <div class="filters inline">
+      <select id="graph-domain"><option value="">domain: all</option></select>
+      <label class="chk"><input type="checkbox" id="graph-hidden-only"> hidden deps only</label>
+    </div>
+  </header>
+  <svg id="depmap" viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid meet" role="img"></svg>
+  <p class="legend-line">
+    <span class="key"><i class="edge flow"></i>APP_CALLS_APP</span>
+    <span class="key"><i class="edge db"></i>USES_DATABASE</span>
+    <span class="key"><i class="edge idn"></i>USES_IDENTITY</span>
+    <span class="key"><i class="edge hid"></i>SENDS_FILE_TO (correlated)</span>
+    <span class="key"><i class="node app"></i>app</span>
+    <span class="key"><i class="node svc"></i>service</span>
+    <span class="key"><i class="node dbn"></i>database</span>
+  </p>
+</section>
+
+<div class="row-2">
+<section id="p-debt" class="panel">
+  <header><h2>Technical debt board</h2></header>
+  <ol id="debt-list" class="rank-list"></ol>
+</section>
+
+<section id="p-agentic" class="panel">
+  <header><h2>Agentic readiness checklist</h2></header>
+  <select id="agentic-app"></select>
+  <ul id="agentic-items" class="check-list"></ul>
+  <p id="agentic-summary" class="summary"></p>
+</section>
+</div>
+
+<section id="p-waves" class="panel wide">
+  <header><h2>Wave plan &amp; execution</h2>
+    <span class="hint">approvals are persisted; HIGH-risk actions require them</span></header>
+  <div id="waves-row" class="waves-row"></div>
+</section>
+
+<div class="row-2">
+<section id="p-blocked" class="panel">
+  <header><h2>Blocked migrations</h2></header>
+  <div id="blocked-list" class="blocked-list"></div>
+</section>
+
+<section id="p-progress" class="panel">
+  <header><h2>Migration progress</h2></header>
+  <div id="progress-bars" class="progress-bars"></div>
+  <div id="rollback-callout" class="callout hidden"></div>
+</section>
+</div>
+
+<section id="p-targetarch" class="panel wide">
+  <header><h2>Target architecture</h2>
+    <div class="filters inline">
+      <select id="ta-app"></select>
+      <select id="ta-provider">
+        <option value="aws">aws</option>
+        <option value="azure">azure</option>
+        <option value="gcp">gcp</option>
+      </select>
+      <label class="chk"><input type="checkbox" id="ta-yaml"> YAML</label>
+    </div>
+  </header>
+  <pre id="ta-output" class="code"></pre>
+</section>
+
+<div class="row-3">
+<section id="p-opportunities" class="panel">
+  <header><h2>Modernization opportunities</h2></header>
+  <ul id="opps-list" class="feed"></ul>
+</section>
+
+<section id="p-risks" class="panel">
+  <header><h2>Risk register</h2></header>
+  <ul id="risks-list" class="feed"></ul>
+</section>
+
+<section id="p-audit" class="panel">
+  <header><h2>Audit trail</h2></header>
+  <ul id="audit-list" class="feed mono"></ul>
+</section>
+</div>
+
+</main>
+
+<footer class="foot">
+  <span>deterministic simulator · no real cloud calls · provider-neutral templates</span>
+  <span id="eval-line"></span>
+</footer>
+
+<script type="module" src="/app.js"></script>
+</body>
+</html>
